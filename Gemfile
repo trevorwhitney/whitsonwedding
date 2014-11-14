@@ -14,3 +14,7 @@ gem 'sdoc', '~> 0.4.0',        group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'warden'
 
+gem 'sass-rails'
+gem 'jquery-rails'
+gem 'handlebars_assets'
+

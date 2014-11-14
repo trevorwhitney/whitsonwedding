@@ -1,0 +1,34 @@
+<li class="<%= small ? 'navbar-left' : '' %> navigation-item dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Events <span class="caret"/></a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-item"><a href="#">Thursday</a></li>
+    <li class="dropdown-item"><a href="#">Friday</a></li>
+    <li class="dropdown-item"><a href="#">Wedding Day</a></li>
+  </ul>
+  </li>
+  <li class="<%= !small ? 'navbar-left' : '' %> left-bookend navigation-item dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">People <span class="caret"/></a>
+    <ul class="dropdown-menu" role="menu">
+      <li class="dropdown-item"><a href="#">Officiant</a></li>
+      <li class="dropdown-item"><a href="#">Amanda & Trevor</a></li>
+      <li class="dropdown-item"><a href="#">Wedding Party</a></li>
+    </ul>
+    </li>
+  <% unless small %>
+    <li class="logo-spacer">
+      <div>
+        &nbsp;
+      </div>
+    </li>
+  <% end %>
+  <% if small %>
+    <li class="navigation-item dropdown">
+      <%= render partial: 'places' %>
+    </li>
+    <li class="navbar-right last navigation-item"><a href="#">Registry</a></li>
+  <% else %>
+    <li class="navbar-right last navigation-item"><a href="#">Registry</a></li>
+    <li class="places-container-large navbar-right navigation-item dropdown">
+      <%= render partial: 'places' %>
+    </li>
+  <% end %>
