@@ -1,0 +1,40 @@
+src_files:
+  - assets/application.js
+
+stylesheets:
+  - assets/application.css
+
+helpers:
+  - 'helpers/**/*.js'
+
+spec_files:
+  - '**/*[sS]pec.js.coffee'
+  - '**/*[sS]pec.js'
+  - '**/*[sS]pec.coffee'
+
+# Default: project root
+src_dir:
+
+# Default: spec/javascripts
+spec_dir:
+
+spec_helper: spec/javascripts/support/jasmine_helper.rb
+
+# Default: Built in boot file
+boot_dir:
+
+# Default: Built in boot file
+boot_files:
+
+# rack_options
+#
+# Extra options to be passed to the rack server
+# by default, Port and AccessLog are passed.
+#
+# This is an advanced options, and left empty by default
+#
+# EXAMPLE
+#
+# rack_options:
+#   server: 'thin'
+

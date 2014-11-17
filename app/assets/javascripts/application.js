@@ -10,10 +10,14 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require init.js
+//= require config.js
 //= require jquery
 //= require jquery_ujs
 //= require underscore.js
 //= require handlebars.runtime-v2.0.0.js
 //= require backbone.js
+//= require current_user.js.coffee
+//= rquire backbone_sync_patch.js.coffee
 //= require_tree ./templates
 //= require_tree .

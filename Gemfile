@@ -16,5 +16,11 @@ gem 'warden'
 
 gem 'sass-rails'
 gem 'jquery-rails'
+gem 'coffee-rails'
 gem 'handlebars_assets'
+
+group :development, :test do
+  gem 'jasmine'
+  gem 'rspec-rails'
+end
 

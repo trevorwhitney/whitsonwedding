@@ -10,9 +10,9 @@ class AccessTokenStrategy < Warden::Strategies::Base
     # Your actual access token should be generated using one of the several great libraries
     # for this purpose and stored in a database, this is just to show how Warden should be
     # set up.
-    session_user_id = Session.where(access_token: request.env["HTTP_ACCESS_TOKEN"]).first.user_id
-    access_granted = (session_user_id.present?)
-    !access_granted ? fail!("Could not log in") : success!(User.find(session_user_id))
+    session = Session.where(access_token: request.env["HTTP_ACCESS_TOKEN"]).first
+    access_granted = (session.present?)
+    !access_granted ? fail!("Could not log in") : success!(User.find(session.user_id))
   end
 end
 
