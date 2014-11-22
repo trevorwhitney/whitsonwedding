@@ -15,7 +15,7 @@ module Api
 
     def delete
       if current_user.id
-        Session.destroy_all(user_id: current_user.id)
+        Session.delete_all(user_id: current_user.id)
         render json: {}, status: 204 and return
       end
 

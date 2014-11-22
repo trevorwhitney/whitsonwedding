@@ -1,9 +1,8 @@
 module Api
-  class UsersController < ApplicationController
+  class UsersController < Api::ApplicationController
     skip_before_filter :authenticate!
 
     def new
-      p params
       user = User.new(params.permit(:email, :password))
       user.save
       render json: user, status: 200

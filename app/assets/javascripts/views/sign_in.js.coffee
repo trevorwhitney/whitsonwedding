@@ -1,15 +1,15 @@
-WhitsonWedding.Views.SignInView = Backbone.View.extend
+class WhitsonWedding.Views.SignInView extends Backbone.View
   el: '#login'
   template: JST['signInModal']
   initialize: (options)->
     @$el = $(@el)
-  render: ->
+  render: =>
     @$el.html(@template())
-    @$el.find('#sign-in-form').on 'submit', (event)->
+    @$el.find('#sign-in-form').on 'submit', (event)=>
       event.preventDefault()
       formCredentials = $(event.currentTarget).serializeArray()
       credentials = {}
-      for cred in formCredentails 
+      for cred in formCredentials 
         do (cred)->
           credentials[cred['name']] = cred['value']
 
@@ -18,8 +18,8 @@ WhitsonWedding.Views.SignInView = Backbone.View.extend
         data: JSON.stringify({email: credentials['email'], password: credentials['password']})
         contentType: 'application/json'
         dataType: 'json'
-        success: (data)->
-          sessionStorage.setItem('whitsonwedding_access_token', data['access_token'])
-          console.log($el)
-          $el.trigger('user:login')
+        success: (data)=>
+          sessionStorage.setItem(WhitsonWedding.Config.currentUserStorageKey, data['access_token'])
+          $('#loginModal').modal('hide')
+          @$el.trigger('user:login')
 

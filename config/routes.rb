@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   get ':page', to: 'pages#index'
 
-  get 'api/users/:id', to: 'pages#index'
-
   namespace :api do
     get 'protected', to: 'api#protected'
     post 'login', to: 'sessions#new'

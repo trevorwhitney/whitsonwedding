@@ -2,7 +2,22 @@ namespace :casperjs do
   test_server_pid_file = "tmp/pids/test_server.pid"
   app_port             = 3030
 
-  desc "Start Testing Server"
+  task :setup_test_data => :environment do
+    puts "Setting up fixture data for tests ..."
+    ActiveRecord::Base.establish_connection(:test)
+    User.create(email: 'tester@example.com', password: 'secret', password_confirmation: 'secret')
+    ActiveRecord::Base.establish_connection(Rails.env)
+    puts "... Fixture data setup successfully"
+  end
+
+  task :clear_test_data => :environment do
+    puts "Clearing fixture data for tests ..."
+    ActiveRecord::Base.establish_connection(:test)
+    User.delete_all
+    ActiveRecord::Base.establish_connection(Rails.env)
+    puts "... Fixture data cleared successfully"
+  end
+
   task :start_test_server do
     counter = 0
 
@@ -25,7 +40,6 @@ namespace :casperjs do
     end
   end
 
-  desc "Stop Testing Server"
   task :stop_test_server do
     puts "Stopping test server ..."
     pid = IO.read(test_server_pid_file).to_i rescue nil
@@ -41,10 +55,9 @@ namespace :casperjs do
 
 
   desc "run Casper JS Tests, starts rails server,run the tests and then stop the server "
-  task :spec => [:start_test_server ] do
+  task :spec => [:setup_test_data, :start_test_server] do
     begin
       spec_path = Rails.root.join("spec/integrations/")
-      spec_support_path = Rails.root.join("spec/support/")
       log_path  = Rails.root.join("log")
       puts "Running CasperJS Specs in #{spec_path}"
       # 1. first runs pre.js
@@ -59,6 +72,7 @@ namespace :casperjs do
             --log-level=info \
              #{File.join(spec_path)}")
     ensure
+      Rake::Task["casperjs:clear_test_data"].invoke
       Rake::Task["casperjs:stop_test_server"].invoke
     end
   end
