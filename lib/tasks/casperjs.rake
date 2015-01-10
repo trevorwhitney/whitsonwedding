@@ -57,7 +57,7 @@ namespace :casperjs do
   desc "run Casper JS Tests, starts rails server,run the tests and then stop the server "
   task :spec => [:setup_test_data, :start_test_server] do
     begin
-      spec_path = Rails.root.join("spec/integrations/")
+      spec_path = Rails.root.join("spec/acceptance/")
       log_path  = Rails.root.join("log")
       puts "Running CasperJS Specs in #{spec_path}"
       # 1. first runs pre.js

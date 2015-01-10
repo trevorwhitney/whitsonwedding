@@ -18,7 +18,13 @@ var WhitsonWeddingRouter = Backbone.Router.extend({
     "where-to-stay": "whereToStay",
     "things-to-do": "thingsToDo",
     "getting-to-ouray": "gettingToOuray",
-    "wedding-day": "weddingDay"
+    "registry": "registry",
+    "thursday": "thursday",
+    "friday": "friday",
+    "wedding-day": "weddingDay",
+    "officiant": "officiant",
+    "wedding-party": "weddingParty",
+    "amanda-and-trevor": "amandaAndTrevor"
   },
   index: function () {
     var IndexView = createView('index');
@@ -44,6 +50,26 @@ var WhitsonWeddingRouter = Backbone.Router.extend({
     var WeddingDayView = createView('weddingDay');
     var weddingDay = new WeddingDayView();
     weddingDay.render();
+  },
+  thursday: function (query, page) {
+    var ThursdayView = createView('thursday');
+    var thursday = new ThursdayView();
+    thursday.render();
+  },
+  friday: function (query, page) {
+    var FridayView = createView('friday');
+    var friday = new FridayView();
+    friday.render();
+  },
+  weddingDay: function (query, page) {
+    var WeddingDayView = createView('weddingDay');
+    var weddingDay = new WeddingDayView();
+    weddingDay.render();
+  },
+  registry: function (query, page) {
+    var RegistryView = createView('registry');
+    var registry = new RegistryView();
+    registry.render();
   }
 });
 

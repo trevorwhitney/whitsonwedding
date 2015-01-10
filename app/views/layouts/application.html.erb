@@ -8,9 +8,11 @@
 <body>
 <div id="main-container" class="container-fluid">
   <header>
+    <%= render partial: 'user_actions' %>
     <div id="main-nav-small" class="visible-sm-block visible-xs-block row">
       <nav class="navbar navbar-default col-md-12" role="navigation">
         <div class="navbar-header">
+          <%= render partial: 'user_actions' %>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
             data-target="#small-nav">
             <span class="sr-only">Toggle navigation</span>
@@ -37,10 +39,6 @@
       <%= link_to image_tag('logo.png', class: 'img-responsive col-md-12'), '/' %>
     </div>
   </header>
-  <div id="user">
-  </div>
-  <div id="login">
-  </div>
   <div id="content-wrapper" class="row">
     <div id="content" class="col-md-12 content-container">
     </div>

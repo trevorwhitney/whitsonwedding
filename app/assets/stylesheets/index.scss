@@ -50,7 +50,7 @@ $screen-lg-min: 1200px;
 }
 
 body {
-  background: url(asset-path('background-2.jpg')) no-repeat center center fixed;
+  background: url(asset-path('background.jpg')) no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -70,7 +70,7 @@ div#header-img {
   width: 55%;
   max-width: 610px;
   min-width: 300px;
-  margin: 0 auto;
+  margin: 5px auto 15px auto;
   padding: 0;
   img {
     margin: 0 auto;
@@ -163,11 +163,45 @@ div.index-content {
   }
 }
 
+div#user {
+  position: absolute;
+  right: 0;
+  padding: 7px;
+  z-index: 100;
+}
+
+@media (max-width: $screen-lg-min) {
+  div#user {
+    right: 0;
+  }
+}
 @media (max-width: $screen-md-min) {
   div.index-content {
     p {
       text-align: center;
       margin: 10px auto;
     }
+  }
+  div#user {
+    right: 0;
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+  div#user {
+    left: 0;
+  }
+}
+
+div#loginModal {
+  .modal-header {
+    padding: 8px;
+  }
+  .modal-dialog, .modal-content {
+    width: 300px;
+  }
+  .modal-body {
+    width: 200px;
+    margin: auto;
   }
 }
