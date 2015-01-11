@@ -70,6 +70,21 @@ var WhitsonWeddingRouter = Backbone.Router.extend({
     var RegistryView = createView('registry');
     var registry = new RegistryView();
     registry.render();
+  },
+  officiant: function (query, page) {
+    var OfficiantView = createView('officiant');
+    var officiant = new OfficiantView();
+    officiant.render();
+  },
+  weddingParty: function (query, page) {
+    var WeddingPartyView = createView('weddingParty');
+    var weddingParty = new WeddingPartyView();
+    weddingParty.render();
+  },
+  amandaAndTrevor: function (query, page) {
+    var AmandaAndTrevor = createView('amandaAndTrevor');
+    var amandaAndTrevor = new AmandaAndTrevor();
+    amandaAndTrevor.render();
   }
 });
 

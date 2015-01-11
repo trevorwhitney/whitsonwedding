@@ -99,6 +99,8 @@ li.navigation-item {
   margin: 0 auto;
   z-index: 10;
   max-width: 1025px;
+  clear: both;
+  float: none;
   nav {
     position: absolute;
     top: 94px;
@@ -164,10 +166,11 @@ div.index-content {
 }
 
 div#user {
-  position: absolute;
+  position: relative;
   right: 0;
   padding: 7px;
   z-index: 100;
+  float: right;
 }
 
 @media (max-width: $screen-lg-min) {
@@ -190,6 +193,7 @@ div#user {
 @media (max-width: $screen-sm-min) {
   div#user {
     left: 0;
+    float: left;
   }
 }
 
