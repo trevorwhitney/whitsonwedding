@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     get 'protected', to: 'api#protected'
-    post 'login', to: 'sessions#new'
+    post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#delete'
-    post 'sign_up', to: 'users#new'
+    post 'sign_up', to: 'users#create'
   end
 end

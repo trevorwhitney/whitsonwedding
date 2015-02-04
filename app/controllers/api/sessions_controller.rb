@@ -1,13 +1,14 @@
 module Api
   class SessionsController < Api::ApplicationController
-    skip_before_filter :authenticate!, only: [:new]
+    skip_before_filter :authenticate!, only: [:create]
 
-    def new
+    def create
       user = User.where(email: params['email']).first
       if user && user.authenticate(params['password'])
         access_token = SecureRandom.uuid
         Session.create!(user_id: user.id, access_token: access_token)
-        render json: {access_token: access_token}, status: 200 and return
+        response_hash = {access_token: access_token, email: user.email}
+        render json: response_hash, status: 200 and return
       end
 
       render json: {}, status: 400
