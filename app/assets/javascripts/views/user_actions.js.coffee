@@ -3,27 +3,26 @@ class WhitsonWedding.Views.UserActions extends Backbone.View
   template: JST['user']
   initialize: (options)->
     @$el = $(@el)
-  accessToken: =>
-    sessionStorage.getItem(WhitsonWedding.Config.currentUserStorageKey)
   signedIn: ->
-    @accessToken() != null
+    WhitsonWedding.currentUser() != null
   viewContext: ->
     {
-      accessToken: @accessToken(),
+      currentUser: WhitsonWedding.currentUser(),
       signedIn: @signedIn()
     }
   render: =>
-    accessToken = @accessToken()
+    currentUser = WhitsonWedding.currentUser()
     @$el.html(@template(@viewContext()))
     $logout = @$el.find('a.logout')
-    $logout.on 'click', ->
+    $logout.on 'click', =>
       $.ajax '/api/logout.json',
         type: 'DELETE'
         beforeSend: (request)->
-          request.setRequestHeader('access_token', accessToken)
+          request.setRequestHeader('access_token', currentUser.accessToken())
         contentType: 'application/json'
         dataType: 'json'
-        success: (data)->
+        success: (data)=>
+          debugger
           sessionStorage.removeItem(WhitsonWedding.Config.currentUserStorageKey)
-          $el.trigger('user:logout')
+          @$el.trigger('user:logout')
 

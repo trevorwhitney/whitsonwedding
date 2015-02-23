@@ -28,7 +28,15 @@ module WhitsonweddingRails
     # config.i18n.default_locale = :de
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.assets.initialize_on_precompile = true
-    
+
+    Warden::Manager.serialize_into_session do |user|
+      user.id
+    end
+
+    Warden::Manager.serialize_from_session do |id|
+      User.find_by_id(id)
+    end
+
     config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
       manager.default_strategies :access_token
       manager.failure_app = UnauthorizedController

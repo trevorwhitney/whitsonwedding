@@ -7,7 +7,11 @@ module Api
       if user && user.authenticate(params['password'])
         access_token = SecureRandom.uuid
         Session.create!(user_id: user.id, access_token: access_token)
-        response_hash = {access_token: access_token, email: user.email}
+        response_hash = {access_token: access_token, 
+                         email: user.email, 
+                         id: user.id, 
+                         first_name: user.first_name,
+                         last_name: user.last_name}
         render json: response_hash, status: 200 and return
       end
 

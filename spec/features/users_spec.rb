@@ -23,5 +23,15 @@ module Api
       expect(user.last_name).to eq 'Jones'
       expect(user.guest.id).to eq guest.id
     end
+
+    it 'signs the user in, returning an authorization key, on accout creation' do
+      Guest.create!(first_name: 'Bob', last_name: 'Jones', email: 'bjones@example.com')
+      post '/api/sign_up', email: 'bjones@example.com', password: 'secret'
+      expect(last_response.status).to eq 200
+
+      session = Session.last
+      parsed_response = JSON.parse(last_response.body)
+      expect(parsed_response['access_token']).to eq session.access_token
+    end
   end
 end

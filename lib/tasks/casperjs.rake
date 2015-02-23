@@ -5,7 +5,11 @@ namespace :casperjs do
   task :setup_test_data => :environment do
     puts "Setting up fixture data for tests ..."
     ActiveRecord::Base.establish_connection(:test)
-    User.create(email: 'tester@example.com', password: 'secret', password_confirmation: 'secret')
+    guest = Guest.create(first_name: 'joe', last_name: 'test')
+    User.create(email: 'tester@example.com', 
+                password: 'secret', 
+                password_confirmation: 'secret', 
+                guest_id: guest.id)
     ActiveRecord::Base.establish_connection(Rails.env)
     puts "... Fixture data setup successfully"
   end
@@ -14,6 +18,7 @@ namespace :casperjs do
     puts "Clearing fixture data for tests ..."
     ActiveRecord::Base.establish_connection(:test)
     User.delete_all
+    Guest.delete_all
     ActiveRecord::Base.establish_connection(Rails.env)
     puts "... Fixture data cleared successfully"
   end

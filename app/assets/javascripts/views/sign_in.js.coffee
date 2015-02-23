@@ -35,7 +35,7 @@ class WhitsonWedding.Views.SignInView extends Backbone.View
         contentType: 'application/json'
         dataType: 'json'
         success: (data)=>
-          sessionStorage.setItem(WhitsonWedding.Config.currentUserStorageKey, data['access_token'])
+          WhitsonWedding.setCurrentUser(data.access_token, data.id, data.first_name, data.last_name)
           $('#loginModal').modal('hide')
           @$el.trigger('user:login')
 
@@ -55,7 +55,7 @@ class WhitsonWedding.Views.SignInView extends Backbone.View
         error: (xhr, error) =>
           @presentErrors(xhr.responseJSON.errors)
         success: (data)=>
-          sessionStorage.setItem(WhitsonWedding.Config.currentUserStorageKey, data['access_token'])
+          WhitsonWedding.setCurrentUser(data.access_token, data.id, data.first_name, data.last_name)
           $('#loginModal').modal('hide')
           @$el.trigger('user:login')
 
