@@ -17,22 +17,22 @@ ActiveRecord::Schema.define(version: 20150217030850) do
   enable_extension "plpgsql"
 
   create_table "guests", force: :cascade do |t|
-    t.string "email",      limit: 255
-    t.string "first_name", limit: 255
-    t.string "last_name",  limit: 255
+    t.string "email"
+    t.string "first_name"
+    t.string "last_name"
   end
 
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id"
-    t.string  "ip_address",   limit: 255
-    t.string  "access_token", limit: 255
+    t.string  "ip_address"
+    t.string  "access_token"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "email",           limit: 255
-    t.string  "password_digest", limit: 255
-    t.string  "password_salt",   limit: 255
-    t.integer "guest_id",                    null: false
+    t.string  "email"
+    t.string  "password_digest"
+    t.string  "password_salt"
+    t.integer "guest_id",        null: false
   end
 
   add_index "users", ["guest_id"], name: "index_users_on_guest_id", using: :btree
