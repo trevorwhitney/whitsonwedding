@@ -11,15 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217030850) do
+ActiveRecord::Schema.define(version: 20150307195431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "guests", force: :cascade do |t|
-    t.string "email"
-    t.string "first_name"
-    t.string "last_name"
+    t.string  "email"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.integer "invitation_id", null: false
+  end
+
+  add_index "guests", ["invitation_id"], name: "index_guests_on_invitation_id", using: :btree
+
+  create_table "invitations", force: :cascade do |t|
+    t.string "email_key"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -37,5 +44,6 @@ ActiveRecord::Schema.define(version: 20150217030850) do
 
   add_index "users", ["guest_id"], name: "index_users_on_guest_id", using: :btree
 
+  add_foreign_key "guests", "invitations"
   add_foreign_key "users", "guests"
 end
