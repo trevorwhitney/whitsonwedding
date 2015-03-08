@@ -22,7 +22,6 @@ class WhitsonWedding.Views.UserActions extends Backbone.View
         contentType: 'application/json'
         dataType: 'json'
         success: (data)=>
-          debugger
-          sessionStorage.removeItem(WhitsonWedding.Config.currentUserStorageKey)
+          WhitsonWedding.clearCurrentUser()
           @$el.trigger('user:logout')
 

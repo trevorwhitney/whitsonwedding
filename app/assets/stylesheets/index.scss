@@ -92,6 +92,9 @@ li.navigation-item {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
+  a {
+    text-decoration: none;
+  }
 }
 
 #main-nav {

@@ -26,4 +26,5 @@ end
 
 gem 'rails_12factor', group: :production
 gem 'activeadmin', github: 'activeadmin'
+gem 'pry'
 

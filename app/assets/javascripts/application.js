@@ -11,12 +11,13 @@
 // about supported directives.
 //
 //= require init.js
-//= require config.js
 //= require jquery
 //= require jquery_ujs
+//= require jquery.cookie.js
 //= require underscore.js
 //= require handlebars.runtime-v2.0.0.js
 //= require backbone.js
+//= require config.js
 //= require current_user.js.coffee
 //= rquire backbone_sync_patch.js.coffee
 //= require_tree ./templates

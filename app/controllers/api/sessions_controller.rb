@@ -1,5 +1,5 @@
 module Api
-  class SessionsController < Api::ApplicationController
+  class SessionsController < ApplicationController
     skip_before_filter :authenticate!, only: [:create]
 
     def create
@@ -21,6 +21,7 @@ module Api
     def delete
       if current_user.id
         Session.delete_all(user_id: current_user.id)
+        warden.logout
         render json: {}, status: 204 and return
       end
 
