@@ -2,10 +2,8 @@ require 'rails_helper'
 
 describe 'logging in and out' do
   before do
-    User.delete_all
-    Session.delete_all
-
-    guest = Guest.create!(first_name: 'Bob', last_name: 'Test', email: 'test@example.com')
+    invitation = Invitation.create
+    guest = Guest.create!(first_name: 'Bob', last_name: 'Test', email: 'test@example.com', invitation: invitation)
     User.create!(email: 'test@example.com', password: 'secret', guest_id: guest.id)
   end
 

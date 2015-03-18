@@ -1,5 +1,5 @@
 module Api
-  class UsersController < Api::ApplicationController
+  class UsersController < ApplicationController
     skip_before_filter :authenticate!
 
     def create

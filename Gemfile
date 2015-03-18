@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 
 gem 'rails', '4.2.0'
@@ -22,6 +23,10 @@ gem 'handlebars_assets'
 group :development, :test do
   gem 'jasmine'
   gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'poltergeist'
 end
 
 gem 'rails_12factor', group: :production

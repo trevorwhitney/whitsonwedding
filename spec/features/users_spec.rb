@@ -11,9 +11,10 @@ module Api
         to match_array(['does not match any emails we have on our guest list. ' +
                         "Maybe we have a different email for you? If you've tried them all, please let Trevor " +
                         'know at trevorjwhitney@gmail.com.'
-      ])
+        ])
 
-      guest = Guest.create!(first_name: 'Bob', last_name: 'Jones', email: 'bjones@example.com')
+      invitation = Invitation.create!
+      guest = Guest.create!(first_name: 'Bob', last_name: 'Jones', email: 'bjones@example.com', invitation: invitation)
       post '/api/sign_up', email: 'bjones@example.com', password: 'secret'
       expect(last_response.status).to eq 200
 
@@ -25,7 +26,8 @@ module Api
     end
 
     it 'signs the user in, returning an authorization key, on accout creation' do
-      Guest.create!(first_name: 'Bob', last_name: 'Jones', email: 'bjones@example.com')
+      invitation = Invitation.create!
+      Guest.create!(first_name: 'Bob', last_name: 'Jones', email: 'bjones@example.com', invitation: invitation)
       post '/api/sign_up', email: 'bjones@example.com', password: 'secret'
       expect(last_response.status).to eq 200
 
