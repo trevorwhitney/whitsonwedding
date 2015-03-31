@@ -29,7 +29,7 @@ class WhitsonWedding.Views.SignInView extends Backbone.View
         do (cred)->
           credentials[cred['name']] = cred['value']
 
-      $.ajax '/api/login.json',
+      $.ajax '/login.json',
         type: 'POST'
         data: JSON.stringify({email: credentials['email'], password: credentials['password']})
         contentType: 'application/json'
@@ -47,7 +47,7 @@ class WhitsonWedding.Views.SignInView extends Backbone.View
         do (cred)->
           credentials[cred['name']] = cred['value']
 
-      $.ajax '/api/sign_up.json',
+      $.ajax '/sign_up.json',
         type: 'POST'
         data: JSON.stringify({email: credentials['email'], password: credentials['password']})
         contentType: 'application/json'

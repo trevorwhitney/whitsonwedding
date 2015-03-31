@@ -15,7 +15,7 @@ class WhitsonWedding.Views.UserActions extends Backbone.View
     @$el.html(@template(@viewContext()))
     $logout = @$el.find('a.logout')
     $logout.on 'click', =>
-      $.ajax '/api/logout.json',
+      $.ajax '/logout.json',
         type: 'DELETE'
         beforeSend: (request)->
           request.setRequestHeader('access_token', currentUser.accessToken())
