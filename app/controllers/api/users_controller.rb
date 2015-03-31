@@ -36,7 +36,8 @@ module Api
         id: user.id,
         email: user.email,
         errors: user.errors,
-        access_token: access_token
+        access_token: access_token,
+        is_admin: user.is_admin?
       }
 
       return presented_user unless user.guest_id

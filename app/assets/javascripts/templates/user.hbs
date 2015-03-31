@@ -1,0 +1,9 @@
+{{#if signedIn}}
+  <a class='logout btn btn-large btn-danger'>Log Out</a>
+{{else}}
+  <a data-toggle="modal" data-target="#loginModal" class='login btn btn-default btn-large'>Log In</a>
+  {{#if userIsAdmin}}
+    <a id='admin-link' class='btn btn-large btn-primary'>Admin</a>
+  {{/if}}
+{{/if}}
+
