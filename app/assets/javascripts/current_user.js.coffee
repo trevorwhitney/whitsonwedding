@@ -3,8 +3,14 @@ WhitsonWedding.currentUser = ->
   return null unless currentUser?
   new WhitsonWedding.Models.User(currentUser)
 
-WhitsonWedding.setCurrentUser = (accessToken, userId, firstName, lastName)->
-  user = new WhitsonWedding.Models.User(id: userId, access_token: accessToken, first_name: firstName, last_name: lastName)
+WhitsonWedding.setCurrentUser = (accessToken, userId, firstName, lastName, isAdmin)->
+  user = new WhitsonWedding.Models.User(
+    id: userId, 
+    access_token: accessToken, 
+    first_name: firstName, 
+    last_name: lastName,
+    is_admin: isAdmin
+  )
   user.fetch
 
   $.cookie(WhitsonWedding.Config.currentUserStorageKey, user, {expires: 7})

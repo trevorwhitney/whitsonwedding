@@ -98,7 +98,7 @@ $(function () {
   $(document).on("click", "a[href^='/']", function(event) {
     href = $(event.currentTarget).attr('href');
 
-    passThrough = href.indexOf('sign_out') >= 0;
+    passThrough = (href.indexOf('sign_out') >= 0) || (href.indexOf('admin') >= 0);
 
     if (!passThrough && !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
       event.preventDefault();

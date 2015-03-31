@@ -17,7 +17,8 @@ class SessionsController < ApplicationController
                        email: user.email, 
                        id: user.id, 
                        first_name: user.first_name,
-                       last_name: user.last_name}
+                       last_name: user.last_name,
+                       is_admin: user.is_admin?}
       render json: response_hash, status: 200 and return
     end
 

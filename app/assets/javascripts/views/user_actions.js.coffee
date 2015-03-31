@@ -5,11 +5,24 @@ class WhitsonWedding.Views.UserActions extends Backbone.View
     @$el = $(@el)
   signedIn: ->
     WhitsonWedding.currentUser() != null
+  userIsAdmin: () ->
+    return false unless @signedIn()
+    WhitsonWedding.currentUser().isAdmin()
+  adminLink: () ->
+    return '#' unless @signedIn
+    "/admin?access_token=#{WhitsonWedding.currentUser().accessToken()}"
   viewContext: ->
-    {
+    baseContext = {
       currentUser: WhitsonWedding.currentUser(),
+      userIsAdmin: @userIsAdmin(),
       signedIn: @signedIn()
     }
+    return baseContext unless @userIsAdmin()
+
+    adminContext = {
+      adminLink: @adminLink(),
+    }
+    _.extend(baseContext, adminContext)
   render: =>
     currentUser = WhitsonWedding.currentUser()
     @$el.html(@template(@viewContext()))

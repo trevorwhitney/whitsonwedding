@@ -35,7 +35,7 @@ class WhitsonWedding.Views.SignInView extends Backbone.View
         contentType: 'application/json'
         dataType: 'json'
         success: (data)=>
-          WhitsonWedding.setCurrentUser(data.access_token, data.id, data.first_name, data.last_name)
+          WhitsonWedding.setCurrentUser(data.access_token, data.id, data.first_name, data.last_name, data.is_admin)
           $('#loginModal').modal('hide')
           @$el.trigger('user:login')
 

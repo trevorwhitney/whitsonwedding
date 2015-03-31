@@ -51,8 +51,13 @@ $screen-lg-min: 1200px;
 
 body {
   background: url(asset-path('background.jpg')) no-repeat center center fixed;
-  background-color: #A4CFC9;
   background-size: cover;
+}
+
+@media(max-width: $screen-md-min) {
+  body {
+    background: #A4CFC9;
+  }
 }
 
 #main-container {
