@@ -3,7 +3,7 @@ require 'rails_helper'
 module Api
   describe 'creating a user' do
     it 'only allows a user to create an account if their email matches that of a guest' do
-      post '/api/sign_up', email: 'bjones@example.com', password: 'secret'
+      post '/sign_up', email: 'bjones@example.com', password: 'secret'
       expect(last_response.status).to eq 400
       parsed_response = JSON.parse(last_response.body)
       expect(parsed_response['email']).to eq 'bjones@example.com'
@@ -15,7 +15,7 @@ module Api
 
       invitation = Invitation.create!
       guest = Guest.create!(first_name: 'Bob', last_name: 'Jones', email: 'bjones@example.com', invitation: invitation)
-      post '/api/sign_up', email: 'bjones@example.com', password: 'secret'
+      post '/sign_up', email: 'bjones@example.com', password: 'secret'
       expect(last_response.status).to eq 200
 
       user = User.last
@@ -28,7 +28,7 @@ module Api
     it 'signs the user in, returning an authorization key, on accout creation' do
       invitation = Invitation.create!
       Guest.create!(first_name: 'Bob', last_name: 'Jones', email: 'bjones@example.com', invitation: invitation)
-      post '/api/sign_up', email: 'bjones@example.com', password: 'secret'
+      post '/sign_up', email: 'bjones@example.com', password: 'secret'
       expect(last_response.status).to eq 200
 
       session = Session.last
