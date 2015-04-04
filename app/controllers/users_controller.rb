@@ -22,13 +22,13 @@ class UsersController < ApplicationController
     render json: present_user(user, access_token), status: status
   end
 
+  private
+
   def user_params(guest)
     params.permit(:email, :password).merge(
       guest: guest
     )
   end
-
-  private
 
   def present_user(user, access_token)
     presented_user = {

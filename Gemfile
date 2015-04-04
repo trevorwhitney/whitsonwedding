@@ -27,6 +27,7 @@ group :development, :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'poltergeist'
+  gem 'capybara-screenshot'
 end
 
 gem 'rails_12factor', group: :production
