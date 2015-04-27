@@ -21,4 +21,6 @@
 //= require current_user.js.coffee
 //= rquire backbone_sync_patch.js.coffee
 //= require_tree ./templates
+//= require_tree ./models
+//= require_tree ./collections
 //= require_tree .

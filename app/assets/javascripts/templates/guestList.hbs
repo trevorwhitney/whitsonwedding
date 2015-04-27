@@ -1,0 +1,35 @@
+<p>
+  Thank you for RSVPing, please select which of the guests on your invitation below will
+  be joining us on the 25th, and which cannot make it. If you need to change your response,
+  you can do so before June 14th. Thanks!
+</p>
+<div id='rsvp-notifications' class='hidden'>
+  <button type="button" class="close" aria-label="Close">
+    <span id='close-notifications' aria-hidden="true">&times;</span>
+  </button>
+  <div class='content' />
+</div>
+<h3 class="text-center">Guests</h3>
+{{#each guests}}
+<div class="guest">
+  <div class="btn-group rsvp-group" data-toggle="buttons">
+    {{#if this.rsvp}}
+    <label class="btn btn-primary rsvp-yes active" data-id="{{this.id}}">
+      <input type="radio" name="rsvp-response" autocomplete="off" checked> Attending
+    </label>
+    <label class="btn btn-primary rsvp-no" data-id="{{this.id}}">
+      <input type="radio" name="rsvp-response" autocomplete="off"> Not Attending
+    </label>
+    {{else}}
+    <label class="btn btn-primary rsvp-yes" data-id="{{this.id}}">
+      <input type="radio" name="rsvp-response" id="attending-{{this.id}}" autocomplete="off"> Attending
+    </label>
+    <label class="btn btn-primary rsvp-no active" data-id="{{this.id}}">
+      <input type="radio" name="rsvp-response" id="not-attending-{{this.id}}" autocomplete="off" checked> Not Attending
+    </label>
+    {{/if}}
+  </div>
+  <div class='guest-name'>{{this.fullName}}</div>
+  <div class='clearfix'/>
+</div>
+{{/each}}

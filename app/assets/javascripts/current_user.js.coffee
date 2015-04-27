@@ -1,7 +1,12 @@
 WhitsonWedding.currentUser = ->
   currentUser = $.cookie(WhitsonWedding.Config.currentUserStorageKey) || null
   return null unless currentUser?
-  new WhitsonWedding.Models.User(currentUser)
+  user = new WhitsonWedding.Models.User(currentUser)
+  $(document).ajaxSend (event, request) -> 
+     token = user.get('access_token')
+     if token
+       request.setRequestHeader('access_token', token);
+  return user
 
 WhitsonWedding.setCurrentUser = (accessToken, userId, firstName, lastName, isAdmin)->
   user = new WhitsonWedding.Models.User(
@@ -17,4 +22,6 @@ WhitsonWedding.setCurrentUser = (accessToken, userId, firstName, lastName, isAdm
 
 WhitsonWedding.clearCurrentUser = ->
   $.removeCookie(WhitsonWedding.Config.currentUserStorageKey)
+  $(document).ajaxSend (event, request) -> 
+     request.setRequestHeader('access_token', null);
   

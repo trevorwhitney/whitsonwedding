@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#delete'
   post 'sign_up', to: 'users#create'
+
+  resources :users, only: [], shallow: true do
+    resources :guests, only: [:index, :update]
+  end
 end
