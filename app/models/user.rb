@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   belongs_to :guest
   has_one :invitation, through: :guest
+  has_many :comments
+
   delegate :first_name, :last_name, to: :guest
 
   def self.authenticate(email, password)

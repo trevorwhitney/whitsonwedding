@@ -36,5 +36,6 @@ class WhitsonWedding.Views.UserActions extends Backbone.View
         dataType: 'json'
         success: (data)=>
           WhitsonWedding.clearCurrentUser()
+          # should force a page reload to handle routes/permissions
           @$el.trigger('user:logout')
 

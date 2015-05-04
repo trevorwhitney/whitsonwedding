@@ -48,8 +48,29 @@ describe GuestsController do
 
   describe '#update' do
     it 'allows a guest to update their rsvp' do
-      put "/guests/#{@john_guest.id}", rsvp: true, access_token: @access_token
+      put "/guests/#{@john_guest.id}", attending: true, access_token: @access_token
       expect(response).to have_http_status(:ok)
+      expect(@john_guest.reload.attending).to eq true
+    end
+
+    it 'allows a guest to update their rsvp to the rehearsal dinner' do
+      put "/guests/#{@john_guest.id}", attending_rehearsal: true, access_token: @access_token
+      expect(response).to have_http_status(:ok)
+      expect(@john_guest.reload.attending_rehearsal).to eq true
+    end
+
+    it 'updates rsvp when guest rsvps the first time' do
+      expect(@john_guest.reload.rsvp).to eq false
+
+      put "/guests/#{@john_guest.id}", attending: true, access_token: @access_token
+      expect(response).to have_http_status(:ok)
+      expect(@john_guest.reload.attending).to eq true
+      expect(@john_guest.reload.attending_rehearsal).to eq false
+      expect(@john_guest.reload.rsvp).to eq true
+
+      put "/guests/#{@john_guest.id}", attending_rehearsal: true, access_token: @access_token
+      expect(response).to have_http_status(:ok)
+      expect(@john_guest.reload.attending_rehearsal).to eq true
       expect(@john_guest.reload.rsvp).to eq true
     end
 
@@ -61,10 +82,10 @@ describe GuestsController do
         invitation: invitation
       )
 
-      put "/guests/#{other_guest.id}", rsvp: true, access_token: @access_token
+      put "/guests/#{other_guest.id}", attending: true, access_token: @access_token
       expect(response).to have_http_status(:bad_request)
 
-      put "/guests/#{@john_guest.id}", rsvp: true, access_token: @access_token
+      put "/guests/#{@john_guest.id}", attending: true, access_token: @access_token
       expect(response).to have_http_status(:ok)
     end
   end

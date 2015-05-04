@@ -12,10 +12,6 @@ class ApplicationController < ActionController::Base
     warden.user
   end
 
-  def current_admin_user
-    warden.user(:admin)
-  end
-
   def warden
     request.env['warden']
   end
@@ -25,6 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin!
-    warden.authenticate! :scope => :admin
+    warden.authenticate! scope: :admin
   end
 end

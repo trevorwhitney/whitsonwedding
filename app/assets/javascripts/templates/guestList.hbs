@@ -1,35 +1,98 @@
-<p>
-  Thank you for RSVPing, please select which of the guests on your invitation below will
-  be joining us on the 25th, and which cannot make it. If you need to change your response,
-  you can do so before June 14th. Thanks!
-</p>
 <div id='rsvp-notifications' class='hidden'>
-  <button type="button" class="close" aria-label="Close">
-    <span id='close-notifications' aria-hidden="true">&times;</span>
+  <button id='close-notifications' type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
   </button>
   <div class='content' />
 </div>
-<h3 class="text-center">Guests</h3>
-{{#each guests}}
-<div class="guest">
-  <div class="btn-group rsvp-group" data-toggle="buttons">
-    {{#if this.rsvp}}
-    <label class="btn btn-primary rsvp-yes active" data-id="{{this.id}}">
-      <input type="radio" name="rsvp-response" autocomplete="off" checked> Attending
-    </label>
-    <label class="btn btn-primary rsvp-no" data-id="{{this.id}}">
-      <input type="radio" name="rsvp-response" autocomplete="off"> Not Attending
-    </label>
-    {{else}}
-    <label class="btn btn-primary rsvp-yes" data-id="{{this.id}}">
-      <input type="radio" name="rsvp-response" id="attending-{{this.id}}" autocomplete="off"> Attending
-    </label>
-    <label class="btn btn-primary rsvp-no active" data-id="{{this.id}}">
-      <input type="radio" name="rsvp-response" id="not-attending-{{this.id}}" autocomplete="off" checked> Not Attending
-    </label>
-    {{/if}}
+<h1 class="text-center col-md-12">RSVP</h1>
+<p>
+Thank you for RSVPing, please select which of the guests on your invitation below will
+be joining us on the 25th, and which cannot make it. If you need to change your response,
+you can do so before June 14th. Thanks!
+</p>
+<div class="row">
+  <div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">RSVP for the Wedding - July 25th</h3>
+    </div>
+    <div class="panel-body">
+      {{#each guests}}
+      <div class="rsvp-wedding">
+        <div class="btn-group rsvp-group" data-toggle="buttons">
+          {{#if attending}}
+          <label class="btn btn-primary rsvp-yes active" data-id="{{id}}">
+            <input type="radio" name="rsvp-response" autocomplete="off" checked> Attending
+          </label>
+          <label class="btn btn-primary rsvp-no" data-id="{{id}}">
+            <input type="radio" name="rsvp-response" autocomplete="off"> Not Attending
+          </label>
+          {{else}}
+          <label class="btn btn-primary rsvp-yes" data-id="{{id}}">
+            <input type="radio" name="rsvp-response" autocomplete="off"> Attending
+          </label>
+          <label class="btn btn-primary rsvp-no active" data-id="{{id}}">
+            <input type="radio" name="rsvp-response" autocomplete="off" checked> Not Attending
+          </label>
+          {{/if}}
+        </div>
+        <div class='guest-name'>{{this.fullName}}</div>
+        <div class='clearfix'/>
+      </div>
+      {{/each}}
+    </div>
   </div>
-  <div class='guest-name'>{{this.fullName}}</div>
-  <div class='clearfix'/>
 </div>
-{{/each}}
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">RSVP for the Rehearsal Dinner - July 24th</h3>
+    </div>
+    <div class="panel-body">
+      {{#each guests}}
+      <div class="rsvp-rehearsal">
+        <div class="btn-group rsvp-group" data-toggle="buttons">
+          {{#if attendingRehearsal}}
+          <label class="btn btn-primary rsvp-rehearsal-yes active" data-id="{{id}}">
+            <input type="radio" name="rsvp-rehearsal-response" autocomplete="off" checked> Attending
+          </label>
+          <label class="btn btn-primary rsvp-rehearsal-no" data-id="{{id}}">
+            <input type="radio" name="rsvp-rehearsal-response" autocomplete="off"> Not Attending
+          </label>
+          {{else}}
+          <label class="btn btn-primary rsvp-rehearsal-yes" data-id="{{id}}">
+            <input type="radio" name="rsvp-rehearsal-response" autocomplete="off"> Attending
+          </label>
+          <label class="btn btn-primary rsvp-rehearsal-no active" data-id="{{id}}">
+            <input type="radio" name="rsvp-rehearsal-response" autocomplete="off" checked> Not Attending
+          </label>
+          {{/if}}
+        </div>
+        <div class='guest-name'>{{this.fullName}}</div>
+        <div class='clearfix'/>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <p>Leave a comment</p>
+    <form id="comment-form" class="comment">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-12">
+            <label for="comment">Comment</label>
+            <textarea id="comment" name="comment" class="form-control" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-md-offset-10">
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

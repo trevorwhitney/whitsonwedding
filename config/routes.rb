@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :users, only: [], shallow: true do
     resources :guests, only: [:index, :update]
   end
+
+  resources :comments, only: [:create]
 end

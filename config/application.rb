@@ -29,18 +29,17 @@ module WhitsonweddingRails
     end
 
     config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
-      manager.failure_app = SessionsController.action(:new)
+      manager.failure_app = SessionsController.action(:unauthorized)
       manager.default_scope = :user
 
       manager.scope_defaults(
-        :user, 
-        strategies: [:access_token], 
-        store: :false, 
+        :user,
+        strategies: [:access_token],
       )
 
       manager.scope_defaults(
-        :admin, 
-        strategies: [:password]
+        :admin,
+        strategies: [:access_token_admin]
       )
     end
   end

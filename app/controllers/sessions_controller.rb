@@ -1,11 +1,8 @@
 class SessionsController < ApplicationController
-  skip_before_filter :authenticate!, only: [:create, :new]
+  skip_before_filter :authenticate!, only: [:create, :unauthorized]
 
-  def new
-    respond_to do |format|
-      format.html
-      format.json { render json: {}, status: 400 }
-    end
+  def unauthorized
+    render json: {}, status: 404
   end
 
   def create
@@ -13,9 +10,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params['password'])
       access_token = SecureRandom.uuid
       Session.create!(user_id: user.id, access_token: access_token)
-      response_hash = {access_token: access_token, 
-                       email: user.email, 
-                       id: user.id, 
+      response_hash = {access_token: access_token,
+                       email: user.email,
+                       id: user.id,
                        first_name: user.first_name,
                        last_name: user.last_name,
                        is_admin: user.is_admin?}

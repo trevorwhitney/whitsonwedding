@@ -3,7 +3,7 @@
   {{#if userIsAdmin}}
     <a id='admin-link' class='btn btn-large btn-primary' href="{{adminLink}}">Admin</a>
   {{else}}
-    <a id='rsvp-link' class='btn btn-large btn-success' data-target="#rsvpModal" data-toggle="modal">RSVP</a>
+    <a id='rsvp-link' href="/rsvp" class='btn btn-large btn-success'>RSVP</a>
   {{/if}}
 {{else}}
   <a data-toggle="modal" data-target="#loginModal" class='login btn btn-default btn-large'>Log In</a>

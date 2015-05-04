@@ -7,7 +7,16 @@
         <h4 class="modal-title create-account-element hidden" id="createAccountLabel">Create Account</h4>
       </div>
       <form id="sign-in-form" class='login-element'>
-        <div class="modal-body">
+       <div class="modal-body">
+          <div id='login-error' class='hidden'>
+            <button id='close-login-error' type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class='alert alert-danger' role='alert'>
+              Unable to log you in, that email and password don't match.
+            </div>
+          </div>
+
           <label for="email">Email</label>
           <input class='form-control' type='text' name="email" />
           <label for="password">Password</label>

@@ -1,6 +1,6 @@
 class WhitsonWedding.Views.RsvpView extends Backbone.View
-  el: '#rsvp'
-  template: JST['rsvpModal']
+  el: '#content'
+  template: JST['rsvpView']
   initialize: (options)->
     @$el = $(@el)
   presentErrors: (errorsHash) =>
@@ -11,5 +11,7 @@ class WhitsonWedding.Views.RsvpView extends Backbone.View
         @$el.find(".#{error}-errors").append("<strong>#{error}</strong> #{messages.join()}")
   render: ->
     @$el.html(@template)
+    guestList = new WhitsonWedding.Views.GuestList()
+    guestList.render()
     return @
 

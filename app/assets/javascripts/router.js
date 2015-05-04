@@ -24,7 +24,8 @@ var WhitsonWeddingRouter = Backbone.Router.extend({
     "wedding-day": "weddingDay",
     "officiant": "officiant",
     "wedding-party": "weddingParty",
-    "amanda-and-trevor": "amandaAndTrevor"
+    "amanda-and-trevor": "amandaAndTrevor",
+    "rsvp": "rsvp"
   },
   index: function () {
     var IndexView = createView('index');
@@ -85,6 +86,10 @@ var WhitsonWeddingRouter = Backbone.Router.extend({
     var AmandaAndTrevor = createView('amandaAndTrevor');
     var amandaAndTrevor = new AmandaAndTrevor();
     amandaAndTrevor.render();
+  },
+  rsvp: function (query, page) {
+    var guestList = new WhitsonWedding.Views.GuestList();
+    guestList.render();
   }
 });
 
