@@ -18,7 +18,7 @@ describe 'comments', js: true do
     wait_for_ajax
 
     within('#comment-form') do
-      fill_in 'Comment', with: 'hello world'
+      fill_in 'comment', with: 'hello world'
       click_on 'Submit'
     end
   end

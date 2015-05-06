@@ -236,7 +236,7 @@ div#loginModal {
     width: 300px;
   }
   .modal-body {
-    width: 200px;
+    width: 250px;
     margin: auto;
   }
 }
@@ -258,4 +258,10 @@ div.guest-name {
   position: relative;
   margin-left: 3px;
   top: 4px;
+}
+
+form#comment-form {
+  button {
+    margin-top: 7px;
+  }
 }

@@ -12,12 +12,13 @@ def create_guest(options={})
   Guest.create!(defaults.merge(options))
 end
 
+
 def create_user(options={})
   guest = options.delete(:guest) || create_guest
   password = options.delete(:password) || 'secret'
   password_confirmation = options.delete(:password_confirmation) || password
   defaults = {
-    email: 'tester@example.com',
+    email: "tester#{SecureRandom.uuid}@example.com",
     password: password,
     password_confirmation: password_confirmation,
     guest_id: guest.id,

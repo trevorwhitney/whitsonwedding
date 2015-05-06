@@ -34,14 +34,26 @@
         <div class='modal-body'>
         <div class='form-group email'>
           <label for='email' class='control-label'>Email</label>
+          <div id="email-errors" class="hidden alert alert-danger">
+            <button type="button" class="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           <input type='text' class='form-control' name="email" />
         </div>
         <div class='form-group password'>
           <label for="password" class='control-label'>Password</label>
+          <div id="password-errors" class="hidden alert alert-danger">
+          </div>
           <input type='password' class='form-control' name="password" />
         </div>
-        <div class='form-group password'>
+        <div class='form-group password_confirmation'>
           <label for="password_confirmation" class='control-label'>Confirm Password</label>
+          <div id="password_confirmation-errors" class="hidden alert alert-danger">
+            <button type="button" class="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
           <input type='password' class='form-control' name="password_confirmation" />
         </div>
           <p>

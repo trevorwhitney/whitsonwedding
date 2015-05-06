@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   has_one :invitation, through: :guest
   has_many :comments
 
+  validates_presence_of :password_confirmation
+  validates_uniqueness_of :email
+
   delegate :first_name, :last_name, to: :guest
 
   def self.authenticate(email, password)

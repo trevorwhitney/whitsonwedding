@@ -88,6 +88,10 @@ var WhitsonWeddingRouter = Backbone.Router.extend({
     amandaAndTrevor.render();
   },
   rsvp: function (query, page) {
+    if (!WhitsonWedding.currentUser()) {
+      this.navigate('/', {trigger: true});
+      return;
+    }
     var guestList = new WhitsonWedding.Views.GuestList();
     guestList.render();
   }

@@ -24,4 +24,5 @@ WhitsonWedding.clearCurrentUser = ->
   $.removeCookie(WhitsonWedding.Config.currentUserStorageKey)
   $(document).ajaxSend (event, request) -> 
      request.setRequestHeader('access_token', null);
+  window.router.navigate('/', {trigger: true})
   

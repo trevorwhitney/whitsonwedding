@@ -4,17 +4,20 @@ class UsersController < ApplicationController
   def create
     guest = Guest.find_by_email(params[:email])
     user = User.new(user_params(guest))
-    if guest.present?
-      user.save
 
+    unless guest.present?
+      user.errors[:email] << 'does not match any emails we have on our guest list. ' +
+        "Maybe we have a different email for you? If you've tried them all, please let Trevor " +
+        'know at trevorjwhitney@gmail.com.'
+      render json: present_user(user, nil), status: 400 and return
+    end
+
+    if user.save
       access_token = SecureRandom.uuid
       Session.create!(user_id: user.id, access_token: access_token)
 
       status = 200
     else
-      user.errors[:email] << 'does not match any emails we have on our guest list. ' +
-        "Maybe we have a different email for you? If you've tried them all, please let Trevor " +
-        'know at trevorjwhitney@gmail.com.'
       access_token = nil
       status = 400
     end
@@ -25,7 +28,7 @@ class UsersController < ApplicationController
   private
 
   def user_params(guest)
-    params.permit(:email, :password).merge(
+    params.permit(:email, :password, :password_confirmation).merge(
       guest: guest
     )
   end
