@@ -23,14 +23,16 @@ describe 'rsvps', js: true do
 
     within('div.rsvp-wedding', text: 'Joe Test') do
       expect(page).to have_content 'Joe Test'
-      expect(page).to have_css '.rsvp-no.active'
+      expect(page).to_not have_css '.active'
       find('label.rsvp-yes').click
+      expect(page).to have_css '.rsvp-yes.active'
     end
 
     within('div.rsvp-wedding', text: 'Sally Test') do
       expect(page).to have_content 'Sally Test'
-      expect(page).to have_css '.rsvp-no.active'
+      expect(page).to_not have_css '.active'
       find('label.rsvp-yes').click
+      expect(page).to have_css '.rsvp-yes.active'
     end
 
     expect(page).to_not have_content 'Other Guest'
@@ -55,6 +57,7 @@ describe 'rsvps', js: true do
       expect(page).to have_content 'Sally Test'
       expect(page).to have_css '.rsvp-yes.active'
       find('label.rsvp-no').click
+      expect(page).to have_css '.rsvp-no.active'
     end
 
     expect(page).to_not have_content 'Other Guest'
@@ -89,14 +92,16 @@ describe 'rsvps', js: true do
 
     within('div.rsvp-rehearsal', text: 'Joe Test') do
       expect(page).to have_content 'Joe Test'
-      expect(page).to have_css '.rsvp-rehearsal-no.active'
+      expect(page).to_not have_css '.active'
       find('label.rsvp-rehearsal-yes').click
+      expect(page).to have_css '.rsvp-rehearsal-yes.active'
     end
 
     within('div.rsvp-rehearsal', text: 'Sally Test') do
       expect(page).to have_content 'Sally Test'
-      expect(page).to have_css '.rsvp-rehearsal-no.active'
+      expect(page).to_not have_css '.active'
       find('label.rsvp-rehearsal-yes').click
+      expect(page).to have_css '.rsvp-rehearsal-yes.active'
     end
 
     expect(page).to_not have_content 'Other Guest'
@@ -121,6 +126,7 @@ describe 'rsvps', js: true do
       expect(page).to have_content 'Sally Test'
       expect(page).to have_css '.rsvp-rehearsal-yes.active'
       find('label.rsvp-rehearsal-no').click
+      expect(page).to have_css '.rsvp-rehearsal-no.active'
     end
 
     expect(page).to_not have_content 'Other Guest'
