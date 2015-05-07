@@ -17,6 +17,7 @@ var WhitsonWeddingRouter = Backbone.Router.extend({
     "": "index",
     "where-to-stay": "whereToStay",
     "things-to-do": "thingsToDo",
+    "secret-garden": "weddingDay",
     "getting-to-ouray": "gettingToOuray",
     "registry": "registry",
     "thursday": "thursday",
