@@ -27,6 +27,25 @@ describe 'creating a user' do
     expect(user.guest.id).to eq @guest.id
   end
 
+  it 'is case insensitive when matching guest emails' do
+    post '/sign_up', email: 'BJones@example.com', password: 'secret', password_confirmation: 'secret'
+    expect(response.status).to eq 200
+
+    user = User.last
+    expect(user.first_name).to eq 'Bob'
+    expect(user.last_name).to eq 'Jones'
+    expect(user.guest.id).to eq @guest.id
+
+    bob = Guest.create!(first_name: 'Bob', last_name: 'Smith', email: 'BSmith@example.com', invitation: invitation)
+    post '/sign_up', email: 'bsmith@example.com', password: 'secret', password_confirmation: 'secret'
+    expect(response.status).to eq 200
+
+    user = User.last
+    expect(user.first_name).to eq 'Bob'
+    expect(user.last_name).to eq 'Smith'
+    expect(user.guest.id).to eq bob.id
+  end
+
   it 'requires an email, password, and password_confirmation to create a user' do
     post '/sign_up', email: 'bjones@example.com'
     expect(response).to have_http_status(:bad_request)

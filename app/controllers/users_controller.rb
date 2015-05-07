@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_filter :authenticate!
 
   def create
-    guest = Guest.find_by_email(params[:email])
+    guest = Guest.where("lower(email) = ?", params[:email].downcase).first
     user = User.new(user_params(guest))
 
     unless guest.present?
