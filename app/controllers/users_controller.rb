@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_filter :authenticate!
 
   def create
-    guest = Guest.where("lower(email) = ?", params[:email].downcase).first
+    guest = Guest.find_by_email(params[:email])
     user = User.new(user_params(guest))
 
     unless guest.present?
@@ -28,8 +28,13 @@ class UsersController < ApplicationController
   private
 
   def user_params(guest)
+    guest_params = {
+      guest: guest,
+      email: guest.try(:email)
+    }.compact
+
     params.permit(:email, :password, :password_confirmation).merge(
-      guest: guest
+      guest_params
     )
   end
 
