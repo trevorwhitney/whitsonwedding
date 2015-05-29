@@ -1,3 +1,46 @@
 <div id="amanda-and-trevor-content">
-    <h1 class="text-center col-md-12">Amand & Trevor</h1>
-</div>
+  <div class="row"> 
+    <h1 class="text-center">Amanda & Trevor</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-12">
+      <div id="engagement-photos" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          {{#each pictures}}
+            {{#if @first}}
+              <li data-target="#engagement-photos" data-slide-to="{{@index}}" class="active"></li>
+            {{else}}
+              <li data-target="#engagement-photos" data-slide-to="{{@index}}"></li>
+            {{/if}}
+          {{/each}}
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          {{#each pictures}}
+            {{#if @first}}
+              <div class="item active">
+            {{else}}
+              <div class="item">
+            {{/if}}
+              <img src="{{this.src}}" />
+              <div class="carousel-caption">
+              </div>
+            </div>
+          {{/each}}
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#engagement-photos" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#engagement-photos" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>

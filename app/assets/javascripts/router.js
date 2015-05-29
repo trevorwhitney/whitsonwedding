@@ -5,8 +5,8 @@ var createView = function(templateName) {
     initialize: function (options) {
       this.$el = $(this.el);
     },
-    render: function () {
-      this.$el.html(this.template());
+    render: function (data) {
+      this.$el.html(this.template(data));
     }
   });
 
@@ -86,7 +86,7 @@ var WhitsonWeddingRouter = Backbone.Router.extend({
   amandaAndTrevor: function (query, page) {
     var AmandaAndTrevor = createView('amandaAndTrevor');
     var amandaAndTrevor = new AmandaAndTrevor();
-    amandaAndTrevor.render();
+    amandaAndTrevor.render({pictures: WhitsonWedding.Assets.Pictures});
   },
   rsvp: function (query, page) {
     if (!WhitsonWedding.currentUser()) {
@@ -119,5 +119,26 @@ $(function () {
 
       return false;
     }
+  });
+  WhitsonWedding.Assets.Pictures = [];
+  var pictures = [
+    {src: "/assets/engagement/1.jpg"},
+    {src: "/assets/engagement/2.jpg"},
+    {src: "/assets/engagement/3.jpg"},
+    {src: "/assets/engagement/4.jpg"},
+    {src: "/assets/engagement/5.jpg"},
+    {src: "/assets/engagement/6.jpg"},
+    {src: "/assets/engagement/7.jpg"},
+    {src: "/assets/engagement/8.jpg"},
+    {src: "/assets/engagement/9.jpg"},
+    {src: "/assets/engagement/10.jpg"},
+    {src: "/assets/engagement/11.jpg"}
+  ];
+
+  pictures.forEach(function (picture) {
+    console.log(picture);
+    var image = new Image();
+    image.src = picture.src;
+    WhitsonWedding.Assets.Pictures.push(image);
   });
 });
